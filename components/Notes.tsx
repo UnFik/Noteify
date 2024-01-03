@@ -27,7 +27,7 @@ const Notes = () => {
         Loading ....
       </p>
     );
-
+//tess
   if (error)
     return (
       <p className="text-white w-screen h-screen flex items-center justify-center text-5xl">
