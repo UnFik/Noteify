@@ -16,23 +16,24 @@ type Props = {
 
 const Note = ({ params: { id } }: Props) => {
   const toast = useToast()
-  const [newTitle, setNewTitle] = useState("");
-  const [newBody, setNewBody] = useState("");
-
+  
   const { data, loading, error } = useQuery(GET_NOTE, {
     variables: { id },
   });
+  const note: INote = data?.note;
+
+  const [newTitle, setNewTitle] = useState(note?.title || "");
+  const [newBody, setNewBody] = useState(note?.body || "");
+
 
   const [updateNote] = useMutation(UPDATE_NOTE, {
     variables: { id: id, title: newTitle, body: newBody },
     refetchQueries: [{ query: GET_NOTE, variables: { id } }],
   });
 
-  const note: INote = data?.note;
 
   const handleUpdateNote = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(newTitle, newBody);
     if (newTitle === "" || newBody === "")
       return toast({
         title: "Title or Description is empty.",
@@ -55,14 +56,14 @@ const Note = ({ params: { id } }: Props) => {
 
   if (loading)
     return (
-      <p className="text-white w-screen h-screen flex items-center justify-center">
+      <p className="text-white w-screen h-screen flex items-center justify-center text-5xl">
         Loading ....
       </p>
     );
 
   if (error || !note)
     return (
-      <p className="text-white w-screen h-screen flex items-center justify-center">
+      <p className="text-white w-screen h-screen flex items-center justify-center text-5xl">
         Oops! Something went wrong ....
       </p>
     );
@@ -88,8 +89,8 @@ const Note = ({ params: { id } }: Props) => {
         </section>
         {/* update form */}
         <div className="flex flex-col gap-5">
-          <h1 className="text-4xl ">Update Note</h1>
-          <form onSubmit={handleUpdateNote} className="flex gap-2 ">
+          <h1 className="text-4xl">Update Note</h1>
+          <form onSubmit={handleUpdateNote} className="flex gap-2">
             <input
               value={newTitle}
               onChange={(e) => setNewTitle(e.target.value)}

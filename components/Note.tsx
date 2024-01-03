@@ -82,25 +82,6 @@ const Note = ({ note }: Props) => {
         </div>
       </CardFooter>
     </Card>
-    // <article className="flex flex-col p-4  bg-slate-200 dark:bg-zinc-800 hover:scale-110 shadow-sm hover:shadow-lg hover:bg-slate-300 transition duration-300 ease-out text-white ">
-    //   {/*title  */}
-    //   <h1 className="font-bold text-xl my-2">{note.title}</h1>
-    //   {/* description */}
-    //   <p className="text-xs my-2 line-clamp-3">{note.body}</p>
-    //   <Link
-    //     href={`/note/${note.id}`}
-    //     className="bg-orange-500 mt-5 p-2 rounded-lg"
-    //   >
-    //     Read More
-    //   </Link>
-
-    //   <button
-    //     onClick={() => deleteNote({ variables: { id: note.id } })}
-    //     className="bg-red-500 mt-5 p-2 rounded-lg"
-    //   >
-    //     Delete
-    //   </button>
-    // </article>
   );
 };
 
