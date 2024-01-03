@@ -4,7 +4,7 @@ import React, { useState, FormEvent } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { GET_NOTES } from "@/graphql/queries";
 import Note from "./Note";
-import { Divider } from "@chakra-ui/react";
+import { Button, Divider } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
 
 import { ADD_NOTE } from "@/graphql/mutation";
@@ -59,6 +59,7 @@ const Notes = () => {
 
   return (
     <div className="pt-10 md:mx-24 px-2 ">
+      <Button colorScheme="red">Delete All</Button>
       <h1 className="text-6xl text-white font-extrabold text-center">
         Noteify
       </h1>
@@ -79,7 +80,7 @@ const Notes = () => {
           className="bg-transparent border text-white p-2 rounded-lg placeholder:font-bold w-full "
         />
         <button className="bg-green-600 p-2 px-8 text-white rounded-lg font-extrabold ">
-          Add Novel
+          Add Note
         </button>
       </form>
       {notes?.length === 0 ? (
@@ -93,6 +94,7 @@ const Notes = () => {
           ))}
         </div>
       )}
+
     </div>
   );
 };
